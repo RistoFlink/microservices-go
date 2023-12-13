@@ -12,7 +12,7 @@ func main() {
 		render(w, "test.page.gohtml")
 	})
 
-	port := ":8080"
+	port := ":80"
 
 	fmt.Println("Starting front end service on port", port)
 	err := http.ListenAndServe(port, nil)
