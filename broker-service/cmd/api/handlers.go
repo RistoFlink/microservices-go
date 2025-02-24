@@ -151,7 +151,7 @@ func (app *Config) sendMail(w http.ResponseWriter, message MailPayload) {
 	jsonData, _ := json.MarshalIndent(message, "", "\t")
 
 	// call the mail service
-	mailServiceUrl := "http://mail-service/send"
+	mailServiceUrl := "http://mailer-service/send"
 
 	// post to mail service
 	request, err := http.NewRequest("POST", mailServiceUrl, bytes.NewBuffer(jsonData))
