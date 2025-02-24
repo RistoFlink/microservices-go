@@ -19,7 +19,7 @@ type Payload struct {
 	Data string `json:"data"`
 }
 
-func newConsumer(conn *amqp.Connection) (Consumer, error) {
+func NewConsumer(conn *amqp.Connection) (Consumer, error) {
 	consumer := Consumer{
 		conn: conn,
 	}
@@ -41,7 +41,7 @@ func (consumer *Consumer) setUp() error {
 	return declareExchange(channel)
 }
 
-func (consumer *Consumer) listen(topics []string) error {
+func (consumer *Consumer) Listen(topics []string) error {
 	ch, err := consumer.conn.Channel()
 	if err != nil {
 		return err
@@ -75,7 +75,7 @@ func (consumer *Consumer) listen(topics []string) error {
 		}
 	}()
 
-	fmt.Printf(" Waiting for messages [Exchange, Queue] [logs_topic, %s]\n", queue.Name)
+	fmt.Printf("Waiting for messages [Exchange, Queue] [logs_topic, %s]\n", queue.Name)
 	<-forever
 
 	return nil
